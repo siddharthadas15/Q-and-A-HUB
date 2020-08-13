@@ -1,0 +1,65 @@
+<%- include("../partials/header")%>
+<div class="container">
+<div class="card" >
+  <div class="card-body">
+  
+    <p class="card-text"><%= user.username %></p>
+    <p class="card-text">Followers-<%=user.numFollowers?user.numFollowers:0%></p>
+    <p class="card-text">Following-<%=user.numFollowing?user.numFollowing:0%></p>
+    <% if(follow==1){%>
+     <a href="/unfollow/<%=user._id%>" class="btn btn-primary">Following</a>
+     <% }else{ %>
+       <a href="/<%=user._id%>/follow" class="btn btn-danger">Follow</a>
+       <% } %>
+  </div>
+</div>
+</div>
+<div class="container">
+  <%if(a.length){%>
+  <h3>Answers By <%=user.username%></h3>
+  <hr>
+  <% } %>
+<% for(var i=0;i<a.length;i++){%>
+<div class="card" >
+  <div class="card-body">
+    <h3 class="card-title"><%= a[i].aq.title %></h3>
+    <hr>
+    <p class="card-text"><%= a[i].aq.description %></p>
+     
+     
+  </div>
+</div>
+<div class="card" >
+  <div class="card-body">
+   
+    <p class="card-text"><%= a[i].Answer %></p>
+  </div>
+</div>
+<% } %>
+</div>
+<div class="container">
+   <%if(q.length){%>
+  <h3>Question By <%=user.username%></h3>
+  <hr>
+  <% } %>
+  <% for(var i=0;i<q.length;i++){%>
+<div class="card" >
+  <div class="card-body">
+    <h3 class="card-title"><%= q[i].title %></h3>
+    <hr>
+    <p class="card-text"><%= q[i].description %></p>
+     <p class="card-text"><a href="/likedby/<%= q[i]._id%>">Likes By </a><%= q[i].likes?q[i].likes:0 %></p>
+     <a href="/qanda/<%=q[i]._id %>/ans/new" class="btn btn-primary">Answer</a>
+     <a href="/qanda/ans/<%=q[i]._id %>" class="btn btn-danger">View All Answer</a>
+     <%if(CurrentUser&&(q[i].userId==CurrentUser._id)){ %>
+      <a href="/qanda/edit/<%=q[i]._id%>" class="btn btn-success">Edit</a>
+      <% } %>
+     
+      <a href="/likes/<%=q[i]._id%>" class="btn btn-success">Like</a>
+       <a href="/unlike/<%=q[i]._id%>" class="btn btn-success">Dislike</a>
+       
+  </div>
+</div>
+<% } %>
+</div>
+<%- include("../partials/footer")%>

@@ -1,0 +1,38 @@
+<%- include("../partials/header")%>
+<div class="container">
+    <div>
+<form method="POST" action="/" class="form-group" class="form-control">
+   
+    
+    <div class="form-group">
+    <input name="username" placeholder="Users" class="form-control" style="width:30%"></input>
+    </div>
+    <button class="btn btn-primary" style="margin-left:25%;position:absolute;top:9%">Search</button>
+  
+    
+</form>
+</div>
+</div>
+
+<div class="container">
+<div class="card" >
+  <div class="card-body">
+      <% if(found){ %>
+   <% for(var i=0;i<u.length;i++){%>
+   <% if(CurrentUser&&!(u[i]._id.equals(CurrentUser._id))){ %>
+   
+    <p class="card-text"><%= u[i].username %></p>
+     <a href="/<%=u[i]._id%>/viewp" class="btn btn-primary">View Profile</a>
+      
+     <% }else{ %>
+      <p class="card-text"><%= u[i].username %></p>
+      <a href="/myprofile/<%=CurrentUser._id%>" class="btn btn-primary">My Profile</a>
+     <% } %>
+     <% } %>
+     <% } else { %>
+     <h2>User Not Found</h2>
+     <a href="/user" class="btn btn-primary">View All Users</a>
+     <% } %>
+  </div>
+</div>
+<%- include("../partials/footer")%>

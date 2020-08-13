@@ -1,0 +1,42 @@
+<%- include("../partials/header")%>
+<div class="container">
+    <div>
+<form method="POST" action="/ques" class="form-group" class="form-control">
+   
+    
+    <div class="form-group">
+    <input name="title" placeholder="Question Title" class="form-control" style="width:30%"></input>
+    </div>
+    <button class="btn btn-primary" style="margin-left:25%;position:absolute;top:9%">Search</button>
+  
+    
+</form>
+</div>
+</div>
+
+
+
+
+<div class="container">
+<% for(var i=0;i<q.length;i++){%>
+<div class="card" >
+  <div class="card-body">
+    <h3 class="card-title"><%= q[i].title %></h3>
+    <hr>
+    <p class="card-text"><%= q[i].description %></p>
+     <p class="card-text"><a href="/likedby/<%= q[i]._id%>">Likes By </a><%= q[i].likes?q[i].likes:0 %></p>
+     <a href="/qanda/<%=q[i]._id %>/ans/new" class="btn btn-primary">Answer</a>
+     <a href="/qanda/ans/<%=q[i]._id %>" class="btn btn-danger">View All Answer</a>
+     <%if(CurrentUser&&(q[i].userId==CurrentUser._id)){ %>
+      <a href="/qanda/edit/<%=q[i]._id%>" class="btn btn-success">Edit</a>
+       <a class="btn btn-primary " href="/request/<%= q[i]._id%>">Request An User</a>
+         <a class="btn btn-primary " href="/qdelete/<%= q[i]._id%>">Delete</a>
+      <% } %>
+     
+      <a href="/likes/<%=q[i]._id%>" class="btn btn-success">Like</a>
+       <a href="/unlike/<%=q[i]._id%>" class="btn btn-success">Dislike</a>
+  </div>
+</div>
+<% } %>
+</div>
+<%- include("../partials/footer")%>

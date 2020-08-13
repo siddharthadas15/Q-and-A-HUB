@@ -1,0 +1,27 @@
+<%- include("../partials/header")%>
+<div class="container">
+
+<div class="card" >
+  <div class="card-body">
+    <h3 class="card-title"><%= q.title %></h3>
+    <hr>
+    <p class="card-text"><%= q.description %></p>
+     
+     
+  </div>
+</div>
+
+
+<div class="card" >
+  <div class="card-body">
+   <% for(var i=0;i<q.answers.length;i++){%>
+    <p class="card-text"><%= q.answers[i].Answer %></p>
+    <% if(CurrentUser&&q.answers[i].userId==CurrentUser._id){%>
+     <a href="/qanda/<%=q._id%>/ans/<%=q.answers[i]._id%>/edit" class="btn btn-primary">Edit</a>
+     <a class="btn btn-primary " href="/deletea/<%= q.answers[i]._id%>">Delete</a>
+     <% } %>
+     <% } %>
+     
+  </div>
+</div>
+<%- include("../partials/footer")%>

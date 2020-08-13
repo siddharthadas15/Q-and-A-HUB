@@ -1,0 +1,17 @@
+<%- include("../partials/header")%>
+<div class="container">
+ <% for(var i=0;i<User.length;i++){%>
+<div class="card" >
+  <div class="card-body">
+   
+    <p class="card-text"><%= User[i].name %></p>
+    <% if(User[i].id!=CurrentUser._id){ %>
+     <a href="/<%=User[i].id%>/viewp" class="btn btn-primary">View Profile</a>
+     <% }else{ %>
+     <a href="/myprofile/<%=CurrentUser._id%>" class="btn btn-primary">My Profile</a>
+     <% } %>
+  </div>
+  <hr>
+  <% } %>
+</div>
+<%- include("../partials/footer")%>

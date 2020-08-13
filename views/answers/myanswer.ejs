@@ -1,0 +1,27 @@
+<%- include("../partials/header")%>
+<div class="container">
+<% for(var i=0;i<a.length;i++){%>
+<div class="card" >
+  <div class="card-body">
+    <h3 class="card-title"><%= a[i].aq.title %></h3>
+    <hr>
+    <p class="card-text"><%= a[i].aq.description %></p>
+     
+     
+  </div>
+</div>
+
+
+<div class="card" >
+  <div class="card-body">
+   
+    <p class="card-text"><%= a[i].Answer %></p>
+     <a href="/qanda/<%=a[i].aq.id%>/ans/<%=a[i]._id%>/edit" class="btn btn-primary">Edit</a>
+     <a class="btn btn-primary " href="/deletea/<%= a[i]._id%>">Delete</a>
+     
+  </div>
+   
+</div>
+<% } %>
+</div>
+<%- include("../partials/footer")%>

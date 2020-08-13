@@ -1,0 +1,19 @@
+<%- include("../partials/header")%>
+<div class="container">
+    
+<h1 style="text-align:center">Edit Answer</h1>
+
+    <div style="width:50%;margin:35px auto;">
+<form method="POST" action="/qanda/<%=qid%>/ans/<%=ans._id%>" class="form-group" class="form-control">
+   
+    
+    <div class="form-group">
+    <textarea name="answer" placeholder="Answer" class="form-control" rows="5"><%=ans.Answer%></textarea>
+    </div>
+    <button class="btn btn-primary btn-lg btn-block" style="margin-top:10px">Edit</button>
+   <a href="/qanda">Go Back</a>
+    
+</form>
+</div>
+</div>
+<%- include("../partials/footer")%>

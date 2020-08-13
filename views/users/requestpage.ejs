@@ -1,0 +1,41 @@
+<%- include("../partials/header")%>
+<div class="container">
+    <h2>Request A User</h2>
+</div>
+<div class="container">
+    
+    <div>
+<form method="POST" action="/ru/<%= qid %>" class="form-group" class="form-control">
+   
+    
+    <div class="form-group">
+    <input name="username" placeholder="Users" class="form-control" style="width:30%"></input>
+    </div>
+    <button class="btn btn-primary" style="margin-left:25%;position:absolute;top:9%">Search</button>
+  
+    
+</form>
+</div>
+</div>
+
+<div class="container">
+    <% if(found){ %>
+<div class="card" >
+  <div class="card-body">
+   <% for(var i=0;i<u.length;i++){%>
+   <% if(CurrentUser&&!(u[i]._id.equals(CurrentUser._id))){ %>
+   
+    <p class="card-text"><%= u[i].username %></p>
+     <a href="/<%=u[i]._id%>/requestus/<%= qid %>" class="btn btn-primary">Request</a>
+      
+     <% } %>
+     <% } %>
+     <% } else { %>
+     <h3>User Not Found</h3>
+     <% } %>
+       
+  </div>
+  <a href="/myquestion" class="btn btn-primary btn-sm">My Questions</a>
+         <a href="/qanda" class="btn btn-primary btn-sm">ALL Questions</a>
+</div>
+<%- include("../partials/footer")%>
