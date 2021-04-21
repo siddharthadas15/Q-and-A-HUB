@@ -20,7 +20,7 @@ Once you have Node.js and MongoDB installed on your computer,
 
 1. Download the project or clone it to your computer by running `git clone https://github.com/siddharthadas15/Q-and-A-HUB.git` on your Git terminal.
 2. In the directory of the folder `Q-and-A-Hub-master` containing the files of the repositiory, open up the terminal and run `npm install`
-3. Once installation is complete, run `npm start` on the same terminal.
+3. Once installation is complete, run `node app.js` on the same terminal.
 4. Open your web browser and visit the address `localhost:8080` and voila!
 5. Sign up to use the awesome features of the app!
 
