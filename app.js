@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+   require('dotenv').config();
+}
+
 var express=require("express");
 var app=express();
 var mongoose=require("mongoose");
@@ -6,13 +10,16 @@ Answer=require("./models/answer.js"),
 bparser=require("body-parser");
 var passport=require("passport"),
 LocalStrategy=require("passport-local"),
+session = require('express-session'),
+MongoDBStore = require('connect-mongo')(session);
 User=require("./models/User.js");
 //===============================================
 //App Setup
 //===============================================
-app.use(bparser.urlencoded({extended:true}));
+app.use(express.urlencoded({extended:true}));
 app.set("view engine","ejs");
-mongoose.connect("mongodb://localhost/qanda");
+const dbUrl=process.env.DB_URL||"mongodb://localhost/qanda";
+mongoose.connect(dbUrl);
 const connection=mongoose.connection;
 connection.once('open',function()
 {
@@ -21,10 +28,28 @@ console.log("mogo starter");
 //==========================================
 //Passport Config.
 //==========================================
-app.use(require("express-session")({
-    secret:"SD15's encode and decode mesaage",
+const secret=process.env.SECRET||"SD15's encode and decode mesaage";
+const store = new MongoDBStore({
+   url: dbUrl,
+   secret,
+   touchAfter: 24 * 60 * 60
+});
+
+store.on("error", function (e) {
+   console.log("SESSION STORE ERROR", e);
+});
+
+app.use(session({
+   store,
+    secret,
     resave:false,
-    saveUninitialized:false
+    saveUninitialized:false,
+    cookie: {
+      httpOnly: true,
+      // secure: true,
+      expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+      maxAge: 1000 * 60 * 60 * 24 * 7
+  }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
