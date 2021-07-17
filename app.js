@@ -86,7 +86,7 @@ app.use(IndexRoutes);
 //===========================================
 //==============================================
 
-app.listen(8080,function()
-{
-   console.log("Serve Started"); 
-});
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`)
+})
