@@ -411,9 +411,7 @@ router.get("/request/:qid",middleware.isLoggedin,function(req, res) {
        res.render("users/requestpage",{u:user,found:1,qid:req.params.qid}); 
     });
 });
-router.post("/ru/:qid",middleware.isLoggedin,funnarray,(req,res)=>{
-	res.render("users/requestpage",{u:users,found:found,qid:req.params.id});
-});
+
 var found3=0;
 router.get("/:uid/requestus/:qid",middleware.isLoggedin,function(req, res) {
     found3=0;
