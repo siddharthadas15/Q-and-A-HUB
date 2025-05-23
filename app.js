@@ -19,7 +19,7 @@ User=require("./models/User.js");
 app.use(express.urlencoded({extended:true}));
 app.set("view engine","ejs");
 const dbUrl=process.env.DB_URL||"mongodb://localhost/qanda";
-mongoose.connect(dbUrl);
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true });
 const connection=mongoose.connection;
 connection.once('open',function()
 {
@@ -28,7 +28,7 @@ console.log("mogo starter");
 //==========================================
 //Passport Config.
 //==========================================
-const secret=process.env.SECRET||"SD15's encode and decode mesaage";
+const secret=process.env.SECRET||"dgg3##ryd56$%AhshsY&&&EYE123UuM%%dh334";
 const store = new MongoDBStore({
    url: dbUrl,
    secret,
