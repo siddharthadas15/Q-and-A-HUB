@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node app.js"
   },
+  "engines": {
+    "node": "20.15.1"
+  },
   "author": "SD15",
   "license": "ISC",
   "dependencies": {
